@@ -4,6 +4,7 @@ import com.dlitv.cloud.request.CreateStudentRequest;
 import com.dlitv.cloud.response.StudentResponse;
 import com.dlitv.cloud.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
