@@ -1,0 +1,5 @@
+rootProject.name = 'microservices'
+include 'address-service'
+include 'student-service'
+include 'api-gateway'
+include 'eureka-service'
