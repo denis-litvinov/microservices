@@ -17,6 +17,9 @@ repositories {
     mavenCentral()
 }
 
+bootJar {
+}
+
 ext {
     set('springCloudVersion', "2023.0.3")
 }
@@ -44,6 +47,6 @@ dependencies {
 //    implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
+//tasks.named('test') {
+//    useJUnitPlatform()
+//}

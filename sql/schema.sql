@@ -1,0 +1,20 @@
+CREATE DATABASE IF NOT EXISTS university;
+USE university;
+
+CREATE TABLE IF NOT EXISTS address (
+    id INT AUTO_INCREMENT,
+    street VARCHAR(255),
+    city VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS student (
+    id INT AUTO_INCREMENT,
+    first_name VARCHAR (255),
+    last_name VARCHAR (255),
+    email VARCHAR(255),
+    address_id INT,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_address_id FOREIGN KEY (address_id) REFERENCES address(id)
+)
+

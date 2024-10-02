@@ -1,0 +1,73 @@
+version: '3.8'
+services:
+
+  mysql:
+    image: mysql
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+    volumes:
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports:
+      - '3306:3306'
+    networks:
+      - spring-cloud-network
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  eureka-service:
+    build: ./eureka-service
+    container_name: eureka-service
+    ports:
+      - '8761:8761'
+    depends_on:
+      - mysql
+    networks:
+      - spring-cloud-network
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - '9090:9090'
+    depends_on:
+      - eureka-service
+    environment:
+      - EUREKA_SERVICE=http://eureka-service:8761/eureka/
+    networks:
+      - spring-cloud-network
+
+  address-service:
+    build: ./address-service
+    container_name: address-service
+    ports:
+      - '8082:8082'
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - EUREKA_SERVICE=http://eureka-service:8761/eureka/
+      - DB_URL=mysql
+    networks:
+      - spring-cloud-network
+
+  student-service:
+    build: ./student-service
+    container_name: student-service
+    ports:
+      - '8080:8080'
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - EUREKA_SERVICE=http://eureka-service:8761/eureka/
+      - DB_URL=mysql
+    networks:
+      - spring-cloud-network
+
+networks:
+  spring-cloud-network:
+    driver: bridge
