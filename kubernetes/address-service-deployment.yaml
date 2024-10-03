@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: address-service-deployment
+  labels:
+    group: microservices
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: address-service
+  template:
+    metadata:
+      name: address-service
+      labels:
+        app: address-service
+    spec:
+      containers:
+        - name: address-service
+          image: denyslitvinov/address-service
+          ports:
+            - containerPort: 8082
