@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class StudentService {
 
-    private final Logger logger = LoggerFactory.getLogger(StudentService.class);
-
     private final StudentRepository studentRepository;
 
     private final CommonService commonService;
@@ -40,8 +38,6 @@ public class StudentService {
     }
 
     public StudentResponse getStudentById(Long id) {
-        logger.info("Inside getStudentById");
-
         StudentEntity studentEntity = studentRepository.findById(id).orElse(null);
 
         AddressResponse addressResponse = commonService.getAddressById(studentEntity.getAddressId());

@@ -27,10 +27,8 @@ public class AddressService {
     }
 
     public AddressResponse getById(Long id) {
-        logger.info("Inside getById {}",id);
-
         return addressRepository.findById(id)
-                .map(e -> new AddressResponse(e.getId(), e.getStreet(), e.getCity()))
+                .map(address -> new AddressResponse(address.getId(), address.getStreet(), address.getCity()))
                 .orElse(null);
     }
 }

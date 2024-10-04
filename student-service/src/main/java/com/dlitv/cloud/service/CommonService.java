@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CommonService {
 
-    private Logger logger = LoggerFactory.getLogger(CommonService.class);
+    private static final Logger logger = LoggerFactory.getLogger(CommonService.class);
 
     private long count = 1;
 
@@ -20,8 +20,8 @@ public class CommonService {
 
     @CircuitBreaker(name = "addressService", fallbackMethod = "fallbackGetAddressById")
     public AddressResponse getAddressById(long addressId) {
-        logger.info("count = {}", count);
-        count++;
+//        logger.info("count = {}", count);
+//        count++;
         return apiGatewayFeignClient.getById(addressId);
     }
 

@@ -40,9 +40,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.34'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
 
-//    implementation 'org.springframework.boot:spring-boot-starter-webflux'
-
-//    implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
@@ -50,12 +47,4 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-
-//    implementation 'io.github.openfeign:feign-micrometer'
-//    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
-//    implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
 }
-
-//tasks.named('test') {
-//    useJUnitPlatform()
-//}
