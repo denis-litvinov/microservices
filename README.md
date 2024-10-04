@@ -81,4 +81,4 @@ The project consists of four primary microservices:
 ## Diagram
 Below is a diagram illustrating the architecture and communication flow between the services:
 
-  ![img.png](img.png)
+![img_1.png](img_1.png)
