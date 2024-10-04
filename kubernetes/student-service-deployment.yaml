@@ -20,3 +20,8 @@ spec:
           image: denyslitvinov/student-service
           ports:
             - containerPort: 8080
+          env:
+            - name: EUREKA_SERVICE
+              value: http://eureka-service-service.default:8761/eureka/
+            - name: DB_URL
+              value: mysql-service.default
